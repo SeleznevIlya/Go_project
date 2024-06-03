@@ -8,6 +8,7 @@ import (
 type Autorization interface {
 	CreateUser(user Go_project.User) (int, error)
 	GenerateToken(username, password string) (string, error)
+	ParseToken(token string) (int, error)
 }
 
 type TodoList interface {
@@ -24,6 +25,6 @@ type Service struct {
 
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
-		Autorization: NewAuthService(repos.Autorization),
+		Autorization: NewAuthService(repos.Authorization),
 	}
 }
